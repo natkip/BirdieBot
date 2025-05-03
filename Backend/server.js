@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,7 +8,7 @@ const http = require('http');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
 const aiRoutes = require('./routes/ai');
-
+const MONGODB_URI = process.env.MONGODB_URI
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
@@ -19,7 +20,10 @@ const SECRET_KEY = 'birdiesecret';
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb+srv://natashakippur:Jazminrox11@birdiebot.tdwu1bt.mongodb.net/')
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
   .then(() => console.log('MongoDB connected 🌸'))
   .catch(err => console.error(err));
 
