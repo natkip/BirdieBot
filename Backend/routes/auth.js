@@ -6,7 +6,7 @@ const router = express.Router();
 
 const SECRET_KEY = process.env.JWT_SECRET || 'birdiesecret';
 
-// ✅ Signup route
+// Signup route
 router.post('/signup', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -23,7 +23,7 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-/// ✅ Login route
+/// Login route
 router.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -41,7 +41,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// ✅ Profile route 
+// Profile route 
 router.get('/profile', async (req, res) => {
     const token = req.headers.authorization;
     if (!token) return res.status(403).json({ error: 'No token provided' });
@@ -53,7 +53,7 @@ router.get('/profile', async (req, res) => {
     });
 });
 
-// ✅ Preferences route 
+// Preferences route 
 router.put('/preferences', async (req, res) => {
     const token = req.headers.authorization;
     if (!token) return res.status(403).json({ error: 'No token provided' });
@@ -71,7 +71,7 @@ router.put('/preferences', async (req, res) => {
     });
 });
 
-// ✅ Change password route
+// Change password route
 router.put('/change-password', async (req, res) => {
     const token = req.headers.authorization;
     const { newPassword } = req.body;
